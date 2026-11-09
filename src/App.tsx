@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './App.css'
 
 // Importing your specific logos based on your folder structure
@@ -6,6 +7,10 @@ import jhubLogo from './assets/logos/Jhub_logo.jpeg'
 import jkuatLogo from './assets/logos/Jkuat.jpeg'
 
 function App() {
+  // State to manage the text inside the textareas so the Clear buttons work
+  const [englishText, setEnglishText] = useState('')
+  const [kslText, setKslText] = useState('')
+
   return (
     <div 
       className="min-h-screen relative pb-32"
@@ -20,8 +25,7 @@ function App() {
         {/* Navbar Area */}
         <header className="flex justify-between items-center mb-16">
           <div className="flex items-baseline gap-2">
-            <span className="text-[#5B34EA] font-extrabold text-2xl tracking-tighter">Instrumate</span>
-            <span className="text-gray-400 font-medium text-sm">Africa logo</span>
+            <span className="text-[#5B34EA] font-black text-3xl tracking-tighter">Instrumate</span>
           </div>
           <div className="text-gray-400 font-medium text-sm">Samsung Innovation Campus</div>
         </header>
@@ -36,12 +40,15 @@ function App() {
               <span className="text-[#5B34EA]">Translator</span> <span className="text-gray-400 text-3xl font-medium">in Kenya</span>
             </h1>
             
-            {/* Abstract Decorative Element (LOVE) */}
-            <div className="hidden md:flex relative w-48 h-48 bg-[#F3F0FF] rounded-full items-center justify-center">
-               <div className="absolute top-4 right-4 w-8 h-8 bg-[#FFD18B] rounded-full"></div>
-               <span className="text-4xl font-light text-[#5B34EA] tracking-widest">L O<br/>V E</span>
-               <svg className="absolute w-full h-full text-[#F87171]" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1">
-                 <path d="M 10 50 Q 30 20 50 50 T 90 50" />
+            {/* KSL Hand Icon Element */}
+            <div className="hidden md:flex relative w-48 h-48 bg-[#F3F0FF] rounded-full items-center justify-center shadow-inner">
+               <div className="absolute top-4 right-4 w-8 h-8 bg-[#FFD18B] rounded-full shadow-sm"></div>
+               {/* Sign Language Hand SVG */}
+               <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#5B34EA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4"/>
+                  <path d="M14 10V5a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v5"/>
+                  <path d="M10 10.5V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
+                  <path d="M6 14v-2a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v9a6 6 0 0 0 6 6h2.4a5 5 0 0 0 4.2-2.2l2.6-3.8a2 2 0 0 0-.2-2.7L18 11"/>
                </svg>
             </div>
           </div>
@@ -59,14 +66,21 @@ function App() {
               
               <div className="relative">
                 <textarea 
+                  value={englishText}
+                  onChange={(e) => setEnglishText(e.target.value)}
                   className="w-full h-32 bg-transparent p-4 border border-gray-200 rounded-2xl resize-none outline-none focus:border-[#5B34EA] focus:ring-1 focus:ring-[#5B34EA] transition-all"
                   placeholder="I am going to the hospital tomorrow"
                 ></textarea>
-                <span className="absolute bottom-4 right-4 text-xs text-gray-400">35/512</span>
+                <span className="absolute bottom-4 right-4 text-xs text-gray-400">{englishText.length}/512</span>
               </div>
               
               <div className="flex justify-between mt-4">
-                <button className="px-6 py-2.5 rounded-xl border border-gray-200 text-gray-600 font-medium hover:bg-gray-50 transition-colors">Clear</button>
+                <button 
+                  onClick={() => setEnglishText('')}
+                  className="px-6 py-2.5 rounded-xl border border-gray-200 text-gray-600 font-medium hover:bg-gray-50 transition-colors"
+                >
+                  Clear
+                </button>
                 <button className="px-8 py-2.5 rounded-xl bg-[#5B34EA] text-white font-medium hover:bg-[#4a2bc2] transition-colors shadow-lg shadow-purple-500/30">Translate →</button>
               </div>
 
@@ -99,14 +113,21 @@ function App() {
                
                <div className="relative">
                  <textarea 
+                  value={kslText}
+                  onChange={(e) => setKslText(e.target.value)}
                   className="w-full h-32 bg-transparent p-4 border border-gray-200 rounded-2xl resize-none outline-none focus:border-[#FFC073] focus:ring-1 focus:ring-[#FFC073] transition-all"
                   placeholder="YESTERDAY ME SCHOOL GO"
                 ></textarea>
-                <span className="absolute bottom-4 right-4 text-xs text-gray-400">22/512</span>
+                <span className="absolute bottom-4 right-4 text-xs text-gray-400">{kslText.length}/512</span>
                </div>
               
               <div className="flex justify-between mt-4">
-                <button className="px-6 py-2.5 rounded-xl border border-gray-200 text-gray-600 font-medium hover:bg-gray-50 transition-colors">Clear</button>
+                <button 
+                  onClick={() => setKslText('')}
+                  className="px-6 py-2.5 rounded-xl border border-gray-200 text-gray-600 font-medium hover:bg-gray-50 transition-colors"
+                >
+                  Clear
+                </button>
                 <button className="px-8 py-2.5 rounded-xl bg-[#FFD18B] text-gray-900 font-medium hover:bg-[#ffc266] transition-colors shadow-lg shadow-orange-500/20">Translate →</button>
               </div>
 
@@ -138,13 +159,14 @@ function App() {
           <div className="flex flex-col items-center justify-center">
             <p className="text-gray-400 text-sm mb-6">In partnership with</p>
             <div className="flex gap-6 flex-wrap justify-center">
-              <div className="border border-gray-200 rounded-full px-8 py-2 bg-white flex items-center justify-center shadow-sm w-40 h-16">
+              {/* Increased JHUB Africa Logo Size */}
+              <div className="border border-gray-200 rounded-[2rem] px-8 py-4 bg-white flex items-center justify-center shadow-sm w-48 h-20">
                 <img src={jhubLogo} alt="JHUB Africa" className="max-h-full object-contain" />
               </div>
-              <div className="border border-gray-200 rounded-full px-8 py-2 bg-white flex items-center justify-center shadow-sm w-40 h-16">
-                 <img src={samsungLogo} alt="Samsung" className="max-h-8 object-contain" />
+              <div className="border border-gray-200 rounded-full px-8 py-2 bg-white flex items-center justify-center shadow-sm w-40 h-20">
+                 <img src={samsungLogo} alt="Samsung" className="max-h-10 object-contain" />
               </div>
-              <div className="border border-gray-200 rounded-full px-8 py-2 bg-white flex items-center justify-center shadow-sm w-40 h-16">
+              <div className="border border-gray-200 rounded-full px-8 py-2 bg-white flex items-center justify-center shadow-sm w-40 h-20">
                  <img src={jkuatLogo} alt="JKUAT" className="max-h-full object-contain" />
               </div>
             </div>
