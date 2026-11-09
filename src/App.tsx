@@ -3,7 +3,7 @@ import './App.css'
 
 // Importing your specific logos based on your folder structure
 import samsungLogo from './assets/logos/Samsung_Black_icon.svg'
-import jhubLogo from './assets/logos/Jhub_logo.jpeg'
+import jhubLogo from './assets/logos/Jhub-logo.webp'
 import jkuatLogo from './assets/logos/Jkuat.jpeg'
 
 function App() {
@@ -34,11 +34,16 @@ function App() {
         <main className="max-w-5xl mx-auto">
           
           <div className="flex justify-between items-start mb-12">
-            <h1 className="text-5xl font-extrabold leading-tight text-[#1E1B4B]">
-              Kenyan Sign<br />
-              Language<br />
-              <span className="text-[#5B34EA]">Translator</span> <span className="text-gray-400 text-3xl font-medium">in Kenya</span>
-            </h1>
+            <div>
+              <h1 className="text-5xl font-extrabold leading-tight text-[#1E1B4B]">
+                Kenyan Sign<br />
+                Language<br />
+                <span className="text-[#5B34EA]">Translator</span>
+              </h1>
+              <p className="text-gray-400 text-2xl font-medium mt-4">
+                Bridging communication in Kenya
+              </p>
+            </div>
             
             {/* KSL Hand Icon Element */}
             <div className="hidden md:flex relative w-48 h-48 bg-[#F3F0FF] rounded-full items-center justify-center shadow-inner">
@@ -159,7 +164,6 @@ function App() {
           <div className="flex flex-col items-center justify-center">
             <p className="text-gray-400 text-sm mb-6">In partnership with</p>
             <div className="flex gap-6 flex-wrap justify-center">
-              {/* Increased JHUB Africa Logo Size */}
               <div className="border border-gray-200 rounded-[2rem] px-8 py-4 bg-white flex items-center justify-center shadow-sm w-48 h-20">
                 <img src={jhubLogo} alt="JHUB Africa" className="max-h-full object-contain" />
               </div>
